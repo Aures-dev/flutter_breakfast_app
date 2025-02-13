@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_flip_card/flutter_flip_card.dart';
 import '../components/custom_app_bar.dart';
 import '../models/category.dart';
 import '../models/diet.dart';
@@ -13,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    final controller = FlipCardController();
+    
+
   String query = '';
 
   // appelé à chaque fois que ce que l'utilisateur entre change
@@ -107,31 +110,42 @@ class _HomePageState extends State<HomePage> {
 
   // Widget pour afficher une catégorie
   Widget _buildCategoryItem(Category category) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.purple.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 20,
-            child: SvgPicture.asset(
-              category.image,
-              width: 24,
-              height: 24,
+    return FlipCard(
+      rotateSide: RotateSide.bottom,
+      onTapFlipping:
+          true, //When enabled, the card will flip automatically when touched.
+      axis: FlipAxis.horizontal,
+      controller: controller,
+      frontWidget: Container(
+        width: 150,
+        margin: const EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.purple.withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: SvgPicture.asset(
+                category.image,
+                width: 24,
+                height: 24,
+              ),
             ),
-          ),
-          const SizedBox(height: 5),
-          Text(category.name,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-        ],
+            const SizedBox(height: 5),
+            Text(category.name,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+          ],
+        ),
       ),
+      backWidget: SizedBox(
+          height: 100,
+          width: 200,
+          child: SvgPicture.asset(category.image, fit: BoxFit.fitHeight)),
     );
   }
 
@@ -163,7 +177,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pushNamed(
                     context,
                     '/show',
-                    arguments: diet, 
+                    arguments: diet,
                   );
                 },
                 style: ElevatedButton.styleFrom(
