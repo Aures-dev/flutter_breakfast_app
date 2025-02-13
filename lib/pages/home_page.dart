@@ -13,6 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+   String query = '';
+
+  // appelé à chaque fois que ce que l'utilisateur entre change
+  void onQueryChanged(String newQuery) {
+    setState(() {
+      query = newQuery;
+    });
+  }
+
+  // méthode pour la recherche
+  List<Diet> get filteredDiets {
+    if (query.isEmpty) return diets;
+    return diets
+        .where((diet) =>
+            diet.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +43,9 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                onChanged: onQueryChanged,
                 decoration: InputDecoration(
-                  hintText: "Search Pancake",
+                  hintText: "Search Diet...",
                   prefixIcon: Icon(Icons.search, color: Colors.grey),
                   suffixIcon: SvgPicture.asset(
                     'icons/Filter.svg',
@@ -75,9 +93,9 @@ class _HomePageState extends State<HomePage> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: diets.length,
+                itemCount: filteredDiets.length,
                 itemBuilder: (context, index) {
-                  return _buildDietItem(diets[index]);
+                  return _buildDietItem(filteredDiets[index]);
                 },
               ),
             ),
@@ -90,6 +108,7 @@ class _HomePageState extends State<HomePage> {
   // Widget pour afficher une catégorie
   Widget _buildCategoryItem(Category category) {
     return Container(
+      width: 150,
       margin: const EdgeInsets.only(right: 10),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -126,6 +145,7 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SvgPicture.asset(diet.image, width: 60, height: 60),
           const SizedBox(width: 10),
