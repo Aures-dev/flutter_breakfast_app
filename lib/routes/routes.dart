@@ -16,13 +16,13 @@ class Routing {
       case '/home':
         return PageTransition(
             type: PageTransitionType.rightToLeft,
-            duration: Duration(milliseconds: 2000),
+            duration: Duration(milliseconds: 500),
             child: const HomePage());
       case '/show':
         final diet = routeSettings.arguments as Diet; // Récupérer l'argument
         return PageTransition(
           type: PageTransitionType.rightToLeft,
-          duration: const Duration(milliseconds: 2000),
+          duration: const Duration(milliseconds: 500),
           child: ShowPage(diet: diet), // Passer l'argument à ShowPage
         );
 

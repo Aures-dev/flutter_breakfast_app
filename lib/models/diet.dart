@@ -31,7 +31,7 @@ class Diet {
 // liste par défaut
 List<Diet> diets = [
   Diet(
-    name: "Végétarien",
+    name: "Vegetarian",
     image: "icons/plate.svg",
     specifications: ["Easy", "30 mins", "180KCal"],
   ),

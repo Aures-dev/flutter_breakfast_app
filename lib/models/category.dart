@@ -24,7 +24,7 @@ class Category {
 
 // Liste des catégories par défaut
 List<Category> categories = [
-  Category(name: "Petit-déjeuner", image: "icons/pancakes.svg"),
-  Category(name: "Déjeuner", image: "icons/plate.svg"),
-  Category(name: "Dîner", image: "icons/salmon-nigiri.svg"),
+  Category(name: "Breakfast", image: "icons/pancakes.svg"),
+  Category(name: "Plate", image: "icons/plate.svg"),
+  Category(name: "Diner", image: "icons/salmon-nigiri.svg"),
 ];
