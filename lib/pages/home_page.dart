@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   String query = '';
+  String query = '';
 
   // appelé à chaque fois que ce que l'utilisateur entre change
   void onQueryChanged(String newQuery) {
@@ -26,10 +26,10 @@ class _HomePageState extends State<HomePage> {
   List<Diet> get filteredDiets {
     if (query.isEmpty) return diets;
     return diets
-        .where((diet) =>
-            diet.name.toLowerCase().contains(query.toLowerCase()))
+        .where((diet) => diet.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,6 +160,11 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 onPressed: () {
                   //Action vers la page de vue des plats
+                  Navigator.pushNamed(
+                    context,
+                    '/show',
+                    arguments: diet, 
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
