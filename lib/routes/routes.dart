@@ -4,10 +4,15 @@ import 'package:page_transition/page_transition.dart';
 
 import '../models/diet.dart';
 import '../pages/home_page.dart';
+import '../pages/intro_screen.dart';
 
 class Routing {
   static Route<dynamic> generateRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case '/':
+        return PageTransition(
+        type: PageTransitionType.fade,
+        child: IntroScreen());
       case '/home':
         return PageTransition(
             type: PageTransitionType.rightToLeft,

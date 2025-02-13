@@ -28,7 +28,7 @@ class Diet {
   }
 }
 
-// liste des régimes alimentaires par défaut
+// liste par défaut
 List<Diet> diets = [
   Diet(
     name: "Végétarien",
@@ -36,7 +36,7 @@ List<Diet> diets = [
     specifications: ["Easy", "30 mins", "180KCal"],
   ),
   Diet(
-    name: "Canai Bread",
+    name: "canai Bread",
     image: "icons/canai-bread.svg",
     specifications: ["Easy", "20 mins", "230KCal"],
   ),

@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   page_transition: ^2.2.1
   flutter_svg: ^2.0.17
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
         - asset: assets/fonts/Poppins-Medium.ttf
   assets:
     - assets/icons/
+    - assets/images/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
